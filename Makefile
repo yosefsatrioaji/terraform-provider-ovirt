@@ -12,7 +12,7 @@ build:
 	go build -o ${BINARY}
 
 release:
-	goreleaser release 
+	goreleaser release --clean
 
 install: build
 	mkdir -p ./terraform.d/plugins/${HOSTNAME}/${NAMESPACE}/${NAME}/${VERSION}/${OS_ARCH}
