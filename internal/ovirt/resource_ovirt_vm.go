@@ -58,7 +58,7 @@ var vmSchema = map[string]*schema.Schema{
 	"cpu_mode": {
 		Type:     schema.TypeString,
 		Optional: true,
-		ForceNew: true,
+		ForceNew: false,
 		Description: fmt.Sprintf(
 			"Sets the CPU mode for the VM. Can be one of: %s",
 			strings.Join(cpuModeValues(), ", "),
@@ -68,7 +68,7 @@ var vmSchema = map[string]*schema.Schema{
 	"cpu_cores": {
 		Type:             schema.TypeInt,
 		Optional:         true,
-		ForceNew:         true,
+		ForceNew:         false,
 		RequiredWith:     []string{"cpu_sockets", "cpu_threads"},
 		Description:      "Number of CPU cores to allocate to the VM. If set, cpu_threads and cpu_sockets must also be specified.",
 		ValidateDiagFunc: validatePositiveInt,
@@ -76,7 +76,7 @@ var vmSchema = map[string]*schema.Schema{
 	"cpu_threads": {
 		Type:             schema.TypeInt,
 		Optional:         true,
-		ForceNew:         true,
+		ForceNew:         false,
 		RequiredWith:     []string{"cpu_sockets", "cpu_cores"},
 		Description:      "Number of CPU threads to allocate to the VM. If set, cpu_cores and cpu_sockets must also be specified.",
 		ValidateDiagFunc: validatePositiveInt,
@@ -84,7 +84,7 @@ var vmSchema = map[string]*schema.Schema{
 	"cpu_sockets": {
 		Type:             schema.TypeInt,
 		Optional:         true,
-		ForceNew:         true,
+		ForceNew:         false,
 		RequiredWith:     []string{"cpu_threads", "cpu_cores"},
 		Description:      "Number of CPU sockets to allocate to the VM. If set, cpu_cores and cpu_threads must also be specified.",
 		ValidateDiagFunc: validatePositiveInt,
