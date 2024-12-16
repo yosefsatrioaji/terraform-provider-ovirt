@@ -6,7 +6,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	ovirtclient "github.com/ovirt/go-ovirt-client/v3"
+	ovirtclient "github.com/renaldyr/go-ovirt-client/v3"
 )
 
 var templateSchema = map[string]*schema.Schema{
