@@ -216,10 +216,12 @@ github.com/posener/complete v1.2.3/go.mod h1:WZIdtGGp+qx0sLrYKtIRAruyNpv6hFCicSg
 github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4/go.mod h1:xMI15A0UPsDsEKsMN9yxemIoYk6Tm2C1GtYGdfGttqA=
 github.com/renaldyr/go-ovirt v0.0.0-20241216041958-d3efb387474f h1:HkOvzzX0mnNV7umSXJ2oWk/Qh22+kjzteNK9eRCLLEs=
 github.com/renaldyr/go-ovirt v0.0.0-20241216041958-d3efb387474f/go.mod h1:IenvSeuB7D2qyUnfhl3HhuBhE5yLtzQQvuCWiyyi8Yw=
-github.com/renaldyr/go-ovirt-client/v3 v3.0.3 h1:9Dar6RImR1MnlC/D+OAsm9UlA+Sy4vwfWIixokvOPEs=
-github.com/renaldyr/go-ovirt-client/v3 v3.0.3/go.mod h1:o3faHCPCXv4DTgCz3Jaeb/q/hCJIMrxR2MUsQihavEI=
 github.com/renaldyr/go-ovirt-client/v3 v3.0.5 h1:ze1/tXfn/RpY287iXKFdu6D8jzty2ZKNUCyFEKB4MVI=
 github.com/renaldyr/go-ovirt-client/v3 v3.0.5/go.mod h1:o3faHCPCXv4DTgCz3Jaeb/q/hCJIMrxR2MUsQihavEI=
+github.com/renaldyr/go-ovirt-client/v3 v3.0.6 h1:XBjPqRpygNl70aubo2LtnJmpOZ9w3s/ogJHuUS2kk8E=
+github.com/renaldyr/go-ovirt-client/v3 v3.0.6/go.mod h1:o3faHCPCXv4DTgCz3Jaeb/q/hCJIMrxR2MUsQihavEI=
+github.com/renaldyr/go-ovirt-client/v3 v3.0.7 h1:YmBGZYf6SQnYwACDgUFPV79k96DuQamzwA5zxCq0BYM=
+github.com/renaldyr/go-ovirt-client/v3 v3.0.7/go.mod h1:o3faHCPCXv4DTgCz3Jaeb/q/hCJIMrxR2MUsQihavEI=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
 github.com/rogpeppe/go-internal v1.6.1 h1:/FiVV8dS/e+YqF2JvO3yXRFbBLTIuSDkuC7aBOAvL+k=
 github.com/russross/blackfriday v1.6.0 h1:KqfZb0pUVN2lYqZUYRddxF4OR8ZMURnJIG5Y3VRLtww=

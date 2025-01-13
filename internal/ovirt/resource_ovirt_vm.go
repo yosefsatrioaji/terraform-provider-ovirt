@@ -797,19 +797,6 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 			)
 		}
 	}
-	if cores, ok := data.GetOk("cpu_cores"); ok {
-		_, err := params.WithCPUCores(cores.(int))
-		if err != nil {
-			diags = append(
-				diags,
-				diag.Diagnostic{
-					Severity: diag.Error,
-					Summary:  "Invalid CPU cores",
-					Detail:   err.Error(),
-				},
-			)
-		}
-	}
 
 	if len(diags) > 0 {
 		return diags
