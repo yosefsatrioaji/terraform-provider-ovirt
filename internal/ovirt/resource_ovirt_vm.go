@@ -804,6 +804,7 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 			)
 		}
 	}
+	
 	if cpucore, ok := data.GetOk("cpu_cores"); ok {
 		_, err := params.WithCpuCores(cpucore.(int))
 		if err != nil {
@@ -816,6 +817,24 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 				},
 			)
 		}
+	}
+
+	if cputhreads, ok := data.GetOk("cpu_threads"); ok {
+		_, err := params.WithCpuThreads(cputhreads.(int))
+		if err != nil {
+			diags = append(
+				diags,
+				diag.Diagnostic{
+					Severity: diag.Error,
+					Summary:  "Invalid CPU threads",
+					Detail:   err.Error(),
+				},
+			)
+		}
+	}
+
+	if cpusockets, ok := data.GetOk("cpu_sockets"); ok {
+		
 	}
 
 	if len(diags) > 0 {
