@@ -804,7 +804,7 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 			)
 		}
 	}
-	
+
 	if cpucore, ok := data.GetOk("cpu_cores"); ok {
 		_, err := params.WithCpuCores(cpucore.(int))
 		if err != nil {
@@ -834,7 +834,17 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 	}
 
 	if cpusockets, ok := data.GetOk("cpu_sockets"); ok {
-		
+		_, err := params.WithCpuSockets(cpusockets.(int))
+		if err != nil {
+			diags = append(
+				diags,
+				diag.Diagnostic{
+					Severity: diag.Error,
+					Summary:  "Invalid CPU sockets",
+					Detail:   err.Error(),
+				},
+			)
+		}
 	}
 
 	if len(diags) > 0 {
