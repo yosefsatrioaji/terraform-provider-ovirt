@@ -774,9 +774,9 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 	cpuCores, _ := data.GetOk("cpu_cores")
 	cpuThreads := data.Get("cpu_threads")
 	cpuSockets := data.Get("cpu_sockets")
-	fmt.Println(cpuCores)
-	fmt.Println(cpuThreads)
-	fmt.Println(cpuSockets)
+	fmt.Println("cpu cores =>", cpuCores)
+	fmt.Println("cpu threads =>", cpuThreads)
+	fmt.Println("cpu sockets => ", cpuSockets)
 
 	if name, ok := data.GetOk("name"); ok {
 		_, err := params.WithName(name.(string))
