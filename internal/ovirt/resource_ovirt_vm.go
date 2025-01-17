@@ -805,7 +805,7 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 		}
 	}
 	if cpucore, ok := data.GetOk("cpu_cores"); ok {
-		_, err := params.WithCpuCores(cpucore.(int64))
+		_, err := params.WithCpuCores(cpucore.(int))
 		if err != nil {
 			diags = append(
 				diags,
