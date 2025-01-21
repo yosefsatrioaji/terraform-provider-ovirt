@@ -771,8 +771,8 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 	diags := diag.Diagnostics{}
 	params := ovirtclient.UpdateVMParams()
 
-	memory := data.Get("memory").(int64)
-	fmt.Println(memory)
+	memory := data.Get("memory").(int)
+	fmt.Println("memory >>>")
 
 	if name, ok := data.GetOk("name"); ok {
 		_, err := params.WithName(name.(string))

@@ -216,8 +216,6 @@ github.com/posener/complete v1.2.3/go.mod h1:WZIdtGGp+qx0sLrYKtIRAruyNpv6hFCicSg
 github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4/go.mod h1:xMI15A0UPsDsEKsMN9yxemIoYk6Tm2C1GtYGdfGttqA=
 github.com/renaldyr/go-ovirt v0.0.0-20241216041958-d3efb387474f h1:HkOvzzX0mnNV7umSXJ2oWk/Qh22+kjzteNK9eRCLLEs=
 github.com/renaldyr/go-ovirt v0.0.0-20241216041958-d3efb387474f/go.mod h1:IenvSeuB7D2qyUnfhl3HhuBhE5yLtzQQvuCWiyyi8Yw=
-github.com/renaldyr/go-ovirt-client/v3 v3.0.14 h1:qTcOzCJp/PTnO4wBFayvzS1LMd3h4+2OEOliUaxxA6k=
-github.com/renaldyr/go-ovirt-client/v3 v3.0.14/go.mod h1:o3faHCPCXv4DTgCz3Jaeb/q/hCJIMrxR2MUsQihavEI=
 github.com/renaldyr/go-ovirt-client/v3 v3.0.15 h1:EtrR/jDlDFNW6aZgil3CSQUKShN6acApUXMjLsM0moE=
 github.com/renaldyr/go-ovirt-client/v3 v3.0.15/go.mod h1:o3faHCPCXv4DTgCz3Jaeb/q/hCJIMrxR2MUsQihavEI=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
