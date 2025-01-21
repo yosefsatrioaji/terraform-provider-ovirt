@@ -771,8 +771,8 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 	diags := diag.Diagnostics{}
 	params := ovirtclient.UpdateVMParams()
 
-	memory := data.Get("memory").(int)
-	fmt.Println("memory >>>", memory)
+	// memory := data.Get("memory").(int)
+	// fmt.Println("memory >>>", memory)
 
 	if name, ok := data.GetOk("name"); ok {
 		_, err := params.WithName(name.(string))
@@ -837,6 +837,19 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 				diag.Diagnostic{
 					Severity: diag.Error,
 					Summary:  "Invalid CPU sockets",
+					Detail:   err.Error(),
+				},
+			)
+		}
+	}
+	if memory, ok := data.GetOk("memory"); ok {
+		_, err := params.WithMemory(int64(memory.(int)))
+		if err != nil {
+			diags = append(
+				diags,
+				diag.Diagnostic{
+					Severity: diag.Error,
+					Summary:  "Invalid memory",
 					Detail:   err.Error(),
 				},
 			)
