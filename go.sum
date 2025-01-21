@@ -222,6 +222,8 @@ github.com/renaldyr/go-ovirt-client/v3 v3.0.12 h1:SG2i8Tjc2nqI1OuULKJ8YxEYLIJ1Kv
 github.com/renaldyr/go-ovirt-client/v3 v3.0.12/go.mod h1:o3faHCPCXv4DTgCz3Jaeb/q/hCJIMrxR2MUsQihavEI=
 github.com/renaldyr/go-ovirt-client/v3 v3.0.13 h1:UZRAiXlarkqIduEbcMCcoIKDq7DpCjRfpd6ka3tmh9M=
 github.com/renaldyr/go-ovirt-client/v3 v3.0.13/go.mod h1:o3faHCPCXv4DTgCz3Jaeb/q/hCJIMrxR2MUsQihavEI=
+github.com/renaldyr/go-ovirt-client/v3 v3.0.14 h1:qTcOzCJp/PTnO4wBFayvzS1LMd3h4+2OEOliUaxxA6k=
+github.com/renaldyr/go-ovirt-client/v3 v3.0.14/go.mod h1:o3faHCPCXv4DTgCz3Jaeb/q/hCJIMrxR2MUsQihavEI=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
 github.com/rogpeppe/go-internal v1.6.1 h1:/FiVV8dS/e+YqF2JvO3yXRFbBLTIuSDkuC7aBOAvL+k=
 github.com/russross/blackfriday v1.6.0 h1:KqfZb0pUVN2lYqZUYRddxF4OR8ZMURnJIG5Y3VRLtww=

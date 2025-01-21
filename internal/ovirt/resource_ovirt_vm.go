@@ -771,12 +771,8 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 	diags := diag.Diagnostics{}
 	params := ovirtclient.UpdateVMParams()
 
-	cpuCores, _ := data.GetOk("cpu_cores")
-	cpuThreads := data.Get("cpu_threads")
-	cpuSockets := data.Get("cpu_sockets")
-	fmt.Println("cpu cores =>", cpuCores)
-	fmt.Println("cpu threads =>", cpuThreads)
-	fmt.Println("cpu sockets => ", cpuSockets)
+	memory := data.Get("memory").(int64)
+	fmt.Println(memory)
 
 	if name, ok := data.GetOk("name"); ok {
 		_, err := params.WithName(name.(string))
