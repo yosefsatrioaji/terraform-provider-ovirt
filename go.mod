@@ -10,7 +10,6 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.25.0
 	github.com/marifwicaksana/go-ovirt-client/v3 v3.3.0
 	github.com/ovirt/go-ovirt-client-log/v3 v3.0.0
-	github.com/renaldyr/go-ovirt-client/v3 v3.0.15
 
 )
 
@@ -54,9 +53,7 @@ require (
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/oklog/run v1.1.0 // indirect
 	github.com/ovirt/go-ovirt v0.0.0-20220427092237-114c47f2835c // indirect
-	github.com/ovirt/go-ovirt-client/v3 v3.2.0 // indirect
 	github.com/posener/complete v1.2.3 // indirect
-	github.com/renaldyr/go-ovirt v0.0.0-20241216041958-d3efb387474f // indirect
 	github.com/russross/blackfriday v1.6.0 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
