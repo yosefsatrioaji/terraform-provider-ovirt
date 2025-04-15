@@ -8,6 +8,7 @@ require (
 	github.com/hashicorp/terraform-plugin-docs v0.14.1
 	github.com/hashicorp/terraform-plugin-log v0.8.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.25.0
+	github.com/marifwicaksana/go-ovirt-client/v3 v3.3.0
 	github.com/ovirt/go-ovirt-client-log/v3 v3.0.0
 	github.com/renaldyr/go-ovirt-client/v3 v3.0.15
 
@@ -52,6 +53,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/oklog/run v1.1.0 // indirect
+	github.com/ovirt/go-ovirt v0.0.0-20220427092237-114c47f2835c // indirect
 	github.com/ovirt/go-ovirt-client/v3 v3.2.0 // indirect
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/renaldyr/go-ovirt v0.0.0-20241216041958-d3efb387474f // indirect

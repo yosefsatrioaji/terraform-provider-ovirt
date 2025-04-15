@@ -7,7 +7,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
-	ovirtclient "github.com/renaldyr/go-ovirt-client/v3"
+	ovirtclient "github.com/marifwicaksana/go-ovirt-client/v3"
 )
 
 func TestTagAttachmentResource(t *testing.T) {

@@ -8,7 +8,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	ovirtclient "github.com/renaldyr/go-ovirt-client/v3"
+	ovirtclient "github.com/marifwicaksana/go-ovirt-client/v3"
 )
 
 func (p *provider) diskAttachmentsDataSource() *schema.Resource {
@@ -44,6 +44,11 @@ func (p *provider) diskAttachmentsDataSource() *schema.Resource {
 								strings.Join(ovirtclient.DiskInterfaceValues().Strings(), "`, `"),
 							),
 						},
+						"logical_name": {
+							Type:        schema.TypeString,
+							Computed:    true,
+							Description: "The logical name of the virtual machine’s disk, as seen from inside the virtual machine.",
+						},
 					},
 				},
 			},
@@ -73,6 +78,7 @@ func (p *provider) diskAttachmentsDataSourceRead(
 		attachment["id"] = diskAttachment.ID()
 		attachment["disk_id"] = diskAttachment.DiskID()
 		attachment["disk_interface"] = diskAttachment.DiskInterface()
+		attachment["logical_name"] = diskAttachment.LogicalName()
 
 		attachments = append(attachments, attachment)
 	}

@@ -14,8 +14,8 @@ import (
 	"testing"
 	"time"
 
+	ovirtclient "github.com/marifwicaksana/go-ovirt-client/v3"
 	ovirtclientlog "github.com/ovirt/go-ovirt-client-log/v3"
-	ovirtclient "github.com/renaldyr/go-ovirt-client/v3"
 )
 
 func TestExamples(t *testing.T) {

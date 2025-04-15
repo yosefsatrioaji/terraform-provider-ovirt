@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-cty/cty"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	ovirtclient "github.com/renaldyr/go-ovirt-client/v3"
+	ovirtclient "github.com/marifwicaksana/go-ovirt-client/v3"
 )
 
 // VMStopBehavior describes the possible methods by which a VM can be stopped.

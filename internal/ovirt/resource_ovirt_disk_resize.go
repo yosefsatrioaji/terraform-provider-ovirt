@@ -5,7 +5,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	ovirtclient "github.com/renaldyr/go-ovirt-client/v3"
+	ovirtclient "github.com/marifwicaksana/go-ovirt-client/v3"
 )
 
 var diskResizeSchema = map[string]*schema.Schema{
