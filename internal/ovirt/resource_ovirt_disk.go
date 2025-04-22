@@ -65,7 +65,7 @@ var diskSchema = schemaMerge(
 			Required:         true,
 			Description:      "Disk size in bytes.",
 			ValidateDiagFunc: validateDiskSize,
-			ForceNew:         true,
+			ForceNew:         false,
 		},
 	},
 )
@@ -192,9 +192,9 @@ func (p *provider) diskRead(ctx context.Context, data *schema.ResourceData, _ in
 func (p *provider) diskUpdate(ctx context.Context, data *schema.ResourceData, _ interface{}) diag.Diagnostics {
 	client := p.client.WithContext(ctx)
 	params := ovirtclient.UpdateDiskParams()
-	var err error
+	// var err error
 	if alias, ok := data.GetOk("alias"); ok {
-		params, err = params.WithAlias(alias.(string))
+		_, err := params.WithAlias(alias.(string))
 		if err != nil {
 			return diag.Diagnostics{
 				diag.Diagnostic{
@@ -205,21 +205,57 @@ func (p *provider) diskUpdate(ctx context.Context, data *schema.ResourceData, _ 
 			}
 		}
 	}
-	disk, err := client.UpdateDisk(ovirtclient.DiskID(data.Id()), params)
+
+	if size, ok := data.GetOk("size"); ok {
+		_, err := params.WithProvisionedSize(uint64(size.(int)))
+		if err != nil {
+			return diag.Diagnostics{
+				diag.Diagnostic{
+					Severity: diag.Error,
+					Summary:  "Invalid size value.",
+					Detail:   err.Error(),
+				},
+			}
+		}
+	}
+
+	updateFailedDiag := diag.Diagnostic{
+		Severity: diag.Error,
+		Summary:  "Failed to update disk size.",
+	}
+
+	disk, err := client.StartUpdateDisk(ovirtclient.DiskID(data.Id()), params)
 	if err != nil {
 		if isNotFound(err) {
 			data.SetId("")
-			return nil
 		}
-		return diag.Diagnostics{
-			diag.Diagnostic{
-				Severity: diag.Error,
-				Summary:  "Failed to update disk.",
-				Detail:   err.Error(),
-			},
-		}
+		updateFailedDiag.Detail = err.Error()
+		return diag.Diagnostics{updateFailedDiag}
 	}
-	return diskResourceUpdate(disk, data)
+	_, err = disk.Wait()
+	if err != nil {
+		if isNotFound(err) {
+			data.SetId("")
+		}
+		updateFailedDiag.Detail = err.Error()
+		return diag.Diagnostics{updateFailedDiag}
+	}
+
+	// disk, err := client.UpdateDisk(ovirtclient.DiskID(data.Id()), params)
+	// if err != nil {
+	// 	if isNotFound(err) {
+	// 		data.SetId("")
+	// 		return nil
+	// 	}
+	// 	return diag.Diagnostics{
+	// 		diag.Diagnostic{
+	// 			Severity: diag.Error,
+	// 			Summary:  "Failed to update disk.",
+	// 			Detail:   err.Error(),
+	// 		},
+	// 	}
+	// }
+	return diskResourceUpdate(disk.Disk(), data)
 }
 
 func (p *provider) diskDelete(ctx context.Context, data *schema.ResourceData, _ interface{}) diag.Diagnostics {
