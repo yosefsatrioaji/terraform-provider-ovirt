@@ -9,3 +9,6 @@ dist
 crash.log
 crash.*.log
 testimage/full.qcow
+build
+package
+terraform.d
