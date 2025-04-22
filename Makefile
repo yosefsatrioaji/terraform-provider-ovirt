@@ -1,22 +1,25 @@
+.PHONY: build package install
 TEST?=$$(go list ./... | grep -v 'vendor')
 HOSTNAME=hashicorp.com
 NAMESPACE=ovirt
 NAME=ovirt
 BINARY=terraform-provider-${NAME}
-VERSION=0.1.0
-OS_ARCH=linux_amd64
+VERSION=3.2.2
+OSNAME=linux
+OSARCH=amd64
 
 default: install
 
 build:
-	go build -o ${BINARY}
+	mkdir -p build
+	CGO_ENABLED=0 GOOS=${OSNAME} GOARCH=${OSARCH} go build -o build/${BINARY}_${VERSION} -trimpath
 
 release:
 	goreleaser release --clean
 
 install: build
-	mkdir -p ./terraform.d/plugins/${HOSTNAME}/${NAMESPACE}/${NAME}/${VERSION}/${OS_ARCH}
-	mv ${BINARY} ./terraform.d/plugins/${HOSTNAME}/${NAMESPACE}/${NAME}/${VERSION}/${OS_ARCH}
+	mkdir -p ./terraform.d/plugins/${HOSTNAME}/${NAMESPACE}/${NAME}/${VERSION}/${OSNAME}_${OSARCH}
+	mv build/${BINARY}_${VERSION} ./terraform.d/plugins/${HOSTNAME}/${NAMESPACE}/${NAME}/${VERSION}/${OSNAME}_${OSARCH}
 
 test:
 	go test $(TEST) || exit 1
@@ -24,3 +27,17 @@ test:
 
 testacc:
 	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 120m
+
+package: clean build
+	mkdir -p package/${VERSION}
+	mv build/${BINARY}_${VERSION} package/${VERSION}/${BINARY}_${VERSION}
+	cp README.md package/${VERSION}/README.md
+	cp LICENSE.md package/${VERSION}/LICENSE
+	chmod -R 777 package/${VERSION}/
+	cd package/${VERSION}/ && zip -r terraform-provider-${NAME}_${VERSION}_${OSNAME}_${OSARCH}.zip ${BINARY}_${VERSION} README.md LICENSE
+	cd package/${VERSION}/ && shasum -a 256 terraform-provider-${NAME}_${VERSION}_${OSNAME}_${OSARCH}.zip > terraform-provider-${NAME}_${VERSION}_SHA256SUMS
+
+clean:
+	rm -rf build
+	rm -rf package
+	rm -rf terraform.d
