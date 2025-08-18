@@ -7,7 +7,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	ovirtclient "github.com/marifwicaksana/go-ovirt-client/v3"
+	ovirtclient "github.com/yosefsatrioaji/go-ovirt-client/v3"
 )
 
 var vmSchema = map[string]*schema.Schema{
@@ -26,6 +26,11 @@ var vmSchema = map[string]*schema.Schema{
 		Type:        schema.TypeString,
 		Optional:    true,
 		Description: "User-provided comment for the VM.",
+	},
+	"description": {
+		Type:        schema.TypeString,
+		Optional:    true,
+		Description: "User-provided description for the VM.",
 	},
 	"cluster_id": {
 		Type:             schema.TypeString,
@@ -295,6 +300,7 @@ func (p *provider) vmCreate(
 		diag.Diagnostics,
 	) diag.Diagnostics{
 		handleVMComment,
+		handleVMDescription,
 		handleVMCPUParameters,
 		handleVMOSType,
 		handleVMType,
@@ -668,6 +674,28 @@ func handleVMComment(
 	return diags
 }
 
+func handleVMDescription(
+	_ ovirtclient.Client,
+	data *schema.ResourceData,
+	params ovirtclient.BuildableVMParameters,
+	diags diag.Diagnostics,
+) diag.Diagnostics {
+	if description, ok := data.GetOk("description"); ok {
+		_, err := params.WithDescription(description.(string))
+		if err != nil {
+			diags = append(
+				diags,
+				diag.Diagnostic{
+					Severity: diag.Error,
+					Summary:  fmt.Sprintf("Invalid VM description: %s", description),
+					Detail:   err.Error(),
+				},
+			)
+		}
+	}
+	return diags
+}
+
 func handleVMInitialization(
 	_ ovirtclient.Client,
 	data *schema.ResourceData,
@@ -747,6 +775,7 @@ func vmResourceUpdate(vm ovirtclient.VMData, data *schema.ResourceData) diag.Dia
 	diags = setResourceField(data, "effective_template_id", vm.TemplateID(), diags)
 	diags = setResourceField(data, "name", vm.Name(), diags)
 	diags = setResourceField(data, "comment", vm.Comment(), diags)
+	diags = setResourceField(data, "description", vm.Description(), diags)
 	diags = setResourceField(data, "status", vm.Status(), diags)
 	if _, ok := data.GetOk("os_type"); ok || vm.OS().Type() != "other" {
 		diags = setResourceField(data, "os_type", vm.OS().Type(), diags)
@@ -802,8 +831,8 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 			)
 		}
 	}
-	if name, ok := data.GetOk("comment"); ok {
-		_, err := params.WithComment(name.(string))
+	if comment, ok := data.GetOk("comment"); ok {
+		_, err := params.WithComment(comment.(string))
 		if err != nil {
 			diags = append(
 				diags,
@@ -815,7 +844,19 @@ func (p *provider) vmUpdate(ctx context.Context, data *schema.ResourceData, _ in
 			)
 		}
 	}
-
+	if description, ok := data.GetOk("description"); ok {
+		_, err := params.WithDescription(description.(string))
+		if err != nil {
+			diags = append(
+				diags,
+				diag.Diagnostic{
+					Severity: diag.Error,
+					Summary:  "Invalid VM description",
+					Detail:   err.Error(),
+				},
+			)
+		}
+	}
 	if cpucore, ok := data.GetOk("cpu_cores"); ok {
 		_, err := params.WithCpuCores(cpucore.(int))
 		if err != nil {

@@ -4,7 +4,7 @@ HOSTNAME=hashicorp.com
 NAMESPACE=ovirt
 NAME=ovirt
 BINARY=terraform-provider-${NAME}
-VERSION=3.2.2
+VERSION=3.2.9
 OSNAME=linux
 OSARCH=amd64
 
@@ -12,6 +12,7 @@ default: install
 
 build:
 	mkdir -p build
+	go mod tidy
 	CGO_ENABLED=0 GOOS=${OSNAME} GOARCH=${OSARCH} go build -o build/${BINARY}_${VERSION} -trimpath
 
 release:
