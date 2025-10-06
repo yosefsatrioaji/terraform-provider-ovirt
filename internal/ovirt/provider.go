@@ -6,8 +6,8 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	ovirtclient "github.com/yosefsatrioaji/go-ovirt-client/v3"
 	ovirtclientlog "github.com/ovirt/go-ovirt-client-log/v3"
+	ovirtclient "github.com/yosefsatrioaji/go-ovirt-client/v3"
 )
 
 func init() {
@@ -141,6 +141,7 @@ func (p *provider) getProvider() *schema.Provider {
 			"ovirt_affinity_group":            p.affinityGroupDataSource(),
 			"ovirt_wait_for_ip":               p.waitForIPDataSource(),
 			"ovirt_storage_domain":            p.storageDomainDataSource(),
+			"ovirt_vnics_list":                p.vnicListDataSource(),
 		},
 	}
 }
