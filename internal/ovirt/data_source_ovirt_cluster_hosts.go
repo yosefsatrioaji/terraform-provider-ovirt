@@ -32,6 +32,11 @@ func (p *provider) clusterHostsDataSource() *schema.Resource {
 							Computed:    true,
 							Description: "status of the host.",
 						},
+						"name": {
+							Type:        schema.TypeString,
+							Computed:    true,
+							Description: "Name of the host.",
+						},
 					},
 				},
 			},
@@ -60,6 +65,7 @@ func (p *provider) clusterHostsDataSourceRead(
 			hostMap := make(map[string]interface{}, 0)
 			hostMap["id"] = host.ID()
 			hostMap["status"] = host.Status()
+			hostMap["name"] = host.Name()
 			hosts = append(hosts, hostMap)
 		}
 	}
