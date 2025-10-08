@@ -131,6 +131,7 @@ func (p *provider) getProvider() *schema.Provider {
 			"ovirt_nic":                      p.nicResource(),
 			"ovirt_tag":                      p.tagResource(),
 			"ovirt_template":                 p.templateResource(),
+			"ovirt_vnic_profile":             p.vnicProfileResource(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"ovirt_blank_template":            p.blankTemplateDataSource(),
