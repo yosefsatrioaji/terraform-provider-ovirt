@@ -35,6 +35,10 @@ var vnicProfileSchema = map[string]*schema.Schema{
 		ForceNew:    true,
 		Description: "Indicates whether port mirroring is enabled for the VNIC profile.",
 	},
+	"id": {
+		Type:     schema.TypeString,
+		Computed: true,
+	},
 }
 
 func (p *provider) vnicProfileResource() *schema.Resource {
@@ -103,6 +107,9 @@ func vnicProfileResourceUpdate(vnicProfile ovirtclient.VNICProfile, data *schema
 		return diag.FromErr(err)
 	}
 	if err := data.Set("port_mirroring", vnicProfile.PortMirroring()); err != nil {
+		return diag.FromErr(err)
+	}
+	if err := data.Set("id", string(vnicProfile.ID())); err != nil {
 		return diag.FromErr(err)
 	}
 	data.SetId(string(vnicProfile.ID()))

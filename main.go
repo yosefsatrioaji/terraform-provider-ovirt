@@ -19,7 +19,7 @@ func main() {
 	flag.Parse()
 
 	opts := &plugin.ServeOpts{
-		ProviderAddr: "registry.terraform.io/renaldyr/ovirt",
+		ProviderAddr: "registry.terraform.io/yosefsatrioaji/ovirt",
 		ProviderFunc: ovirt.New(),
 	}
 

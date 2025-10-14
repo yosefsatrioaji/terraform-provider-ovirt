@@ -132,6 +132,9 @@ func (p *provider) getProvider() *schema.Provider {
 			"ovirt_tag":                      p.tagResource(),
 			"ovirt_template":                 p.templateResource(),
 			"ovirt_vnic_profile":             p.vnicProfileResource(),
+			"ovirt_network":                  p.networkResource(),
+			"ovirt_cluster_network":          p.clusterNetworkResource(),
+			"ovirt_network_attachment":       p.resourceNetworkAttachment(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"ovirt_blank_template":            p.blankTemplateDataSource(),
