@@ -246,8 +246,8 @@ github.com/vmihailenco/tagparser v0.1.2 h1:gnjoVuB/kljJ5wICEEOpx98oXMWPLj22G67Vb
 github.com/vmihailenco/tagparser v0.1.2/go.mod h1:OeAg3pn3UbLjkWt+rN9oFYB6u/cQgqMEUPoW2WPyhdI=
 github.com/xanzy/ssh-agent v0.3.0 h1:wUMzuKtKilRgBAD1sUb8gOwwRr2FGoBVumcjoOACClI=
 github.com/xanzy/ssh-agent v0.3.0/go.mod h1:3s9xbODqPuuhK9JV1R321M/FlMZSBvE5aY6eAcqrDh0=
-github.com/yosefsatrioaji/go-ovirt-client/v3 v3.5.13 h1:oBq9CxUMbkRySPVdAqaymv1LpjCqqeYCxj0kB06GhcI=
-github.com/yosefsatrioaji/go-ovirt-client/v3 v3.5.13/go.mod h1:4qQgZ+wTeJLrKEmx6zMYoWaS962PRc8Q2lDY/Ayo2lw=
+github.com/yosefsatrioaji/go-ovirt-client/v3 v3.5.18 h1:rNFy5pE2EHAwQkNX8RwMaBxjfPM/ovLsB9vqumqG19s=
+github.com/yosefsatrioaji/go-ovirt-client/v3 v3.5.18/go.mod h1:4qQgZ+wTeJLrKEmx6zMYoWaS962PRc8Q2lDY/Ayo2lw=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
 github.com/zclconf/go-cty v1.1.0/go.mod h1:xnAOWiHeOqg2nWS62VtQ7pbOu17FtxJNW8RLEih+O3s=
 github.com/zclconf/go-cty v1.2.0/go.mod h1:hOPWgoHbaTUnI5k4D2ld+GRpFJSCe6bCM7m1q/N4PQ8=

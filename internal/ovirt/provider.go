@@ -146,6 +146,9 @@ func (p *provider) getProvider() *schema.Provider {
 			"ovirt_wait_for_ip":               p.waitForIPDataSource(),
 			"ovirt_storage_domain":            p.storageDomainDataSource(),
 			"ovirt_vnics_list":                p.vnicListDataSource(),
+			"ovirt_cluster_list":              p.clusterListDataSource(),
+			"ovirt_datacenter_list":           p.datacenterListDataSource(),
+			"ovirt_network_list":              p.networkListDataSource(),
 		},
 	}
 }
