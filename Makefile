@@ -4,7 +4,7 @@ HOSTNAME=hashicorp.com
 NAMESPACE=ovirt
 NAME=ovirt
 BINARY=terraform-provider-${NAME}
-VERSION=3.5.3
+VERSION=3.5.5
 OSNAME=linux
 OSARCH=amd64
 

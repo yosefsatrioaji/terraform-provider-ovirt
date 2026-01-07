@@ -149,6 +149,8 @@ func (p *provider) getProvider() *schema.Provider {
 			"ovirt_cluster_list":              p.clusterListDataSource(),
 			"ovirt_datacenter_list":           p.datacenterListDataSource(),
 			"ovirt_network_list":              p.networkListDataSource(),
+			"ovirt_cluster_network_list":      p.clusterNetworkListDataSource(),
+			"ovirt_host_network_list":         p.hostNetworkListDataSource(),
 		},
 	}
 }

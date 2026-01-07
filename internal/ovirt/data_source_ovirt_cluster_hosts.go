@@ -18,7 +18,7 @@ func (p *provider) clusterHostsDataSource() *schema.Resource {
 				ValidateDiagFunc: validateUUID,
 			},
 			"hosts": {
-				Type:     schema.TypeSet,
+				Type:     schema.TypeList,
 				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
@@ -36,6 +36,30 @@ func (p *provider) clusterHostsDataSource() *schema.Resource {
 							Type:        schema.TypeString,
 							Computed:    true,
 							Description: "Name of the host.",
+						},
+						"comment": {
+							Type:        schema.TypeString,
+							Computed:    true,
+							Description: "Comment of the host.",
+						},
+						"nics": {
+							Type:        schema.TypeList,
+							Computed:    true,
+							Description: "List of host nics",
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"id": {
+										Type:        schema.TypeString,
+										Computed:    true,
+										Description: "ID of nic host",
+									},
+									"name": {
+										Type:        schema.TypeString,
+										Computed:    true,
+										Description: "Name of nic host",
+									},
+								},
+							},
 						},
 					},
 				},
@@ -66,6 +90,19 @@ func (p *provider) clusterHostsDataSourceRead(
 			hostMap["id"] = host.ID()
 			hostMap["status"] = host.Status()
 			hostMap["name"] = host.Name()
+			hostMap["comment"] = host.Comment()
+			nics := make([]map[string]interface{}, 0)
+			hostNics, err := host.HostNICs()
+			if err != nil {
+				return errorToDiags("list host nics", err)
+			}
+			for _, nic := range hostNics {
+				nicMap := make(map[string]interface{}, 0)
+				nicMap["id"] = nic.ID()
+				nicMap["name"] = nic.Name()
+				nics = append(nics, nicMap)
+			}
+			hostMap["nics"] = nics
 			hosts = append(hosts, hostMap)
 		}
 	}

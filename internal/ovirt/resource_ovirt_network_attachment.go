@@ -27,10 +27,10 @@ var resourceNetworkAttachmentSchema = map[string]*schema.Schema{
 		ValidateDiagFunc: validateUUID,
 		ForceNew:         true,
 	},
-	"nic_name": {
+	"host_nic_id": {
 		Type:        schema.TypeString,
 		Required:    true,
-		Description: "Name of the NIC associated with this network attachment.",
+		Description: "ID of the host NIC associated with this network attachment.",
 		ForceNew:    true,
 	},
 }
@@ -49,11 +49,11 @@ func (p *provider) resourceNetworkAttachmentCreate(ctx context.Context, data *sc
 	client := p.client.WithContext(ctx)
 	hostID := data.Get("host_id").(string)
 	networkID := data.Get("network_id").(string)
-	nicName := data.Get("nic_name").(string)
+	hostNicID := data.Get("host_nic_id").(string)
 	networkAttachment, err := client.AttachNetworkToHost(
 		ovirtclient.HostID(hostID),
 		ovirtclient.NetworkID(networkID),
-		nicName,
+		ovirtclient.HostNICID(hostNicID),
 	)
 	if err != nil {
 		return errorToDiags("create network attachment", err)
@@ -65,8 +65,8 @@ func (p *provider) resourceNetworkAttachmentRead(ctx context.Context, data *sche
 	client := p.client.WithContext(ctx)
 	networkAttachmentID := data.Id()
 	hostID := data.Get("host_id").(string)
-	nicName := data.Get("nic_name").(string)
-	networkAttachment, err := client.GetNetworkAttachment(ovirtclient.NetworkAttachmentID(networkAttachmentID), ovirtclient.HostID(hostID), nicName)
+	hostNicID := data.Get("host_nic_id").(string)
+	networkAttachment, err := client.GetNetworkAttachment(ovirtclient.NetworkAttachmentID(networkAttachmentID), ovirtclient.HostID(hostID), ovirtclient.HostNICID(hostNicID))
 	if err != nil {
 		return errorToDiags("get network attachment", err)
 	}
@@ -77,8 +77,8 @@ func (p *provider) resourceNetworkAttachmentDelete(ctx context.Context, data *sc
 	client := p.client.WithContext(ctx)
 	networkAttachmentID := data.Id()
 	hostID := data.Get("host_id").(string)
-	nicName := data.Get("nic_name").(string)
-	err := client.DetachNetworkFromHost(ovirtclient.NetworkAttachmentID(networkAttachmentID), ovirtclient.HostID(hostID), nicName)
+	hostNicID := data.Get("host_nic_id").(string)
+	err := client.DetachNetworkFromHost(ovirtclient.NetworkAttachmentID(networkAttachmentID), ovirtclient.HostID(hostID), ovirtclient.HostNICID(hostNicID))
 	if err != nil {
 		return errorToDiags("delete network attachment", err)
 	}
@@ -93,7 +93,7 @@ func resourceNetworkAttachmentUpdate(networkAttachment ovirtclient.NetworkAttach
 	if err := data.Set("network_id", string(networkAttachment.NetworkID())); err != nil {
 		return diag.FromErr(err)
 	}
-	if err := data.Set("nic_name", networkAttachment.NicName()); err != nil {
+	if err := data.Set("host_nic_id", string(networkAttachment.HostNICID())); err != nil {
 		return diag.FromErr(err)
 	}
 	if err := data.Set("id", string(networkAttachment.ID())); err != nil {
